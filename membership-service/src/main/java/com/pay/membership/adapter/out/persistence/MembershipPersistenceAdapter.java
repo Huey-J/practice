@@ -1,12 +1,13 @@
 package com.pay.membership.adapter.out.persistence;
 
+import com.pay.membership.application.port.out.FindMembershipPort;
 import com.pay.membership.application.port.out.RegisterMembershipPort;
 import common.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class MemberPersistenceAdapter implements RegisterMembershipPort {
+public class MembershipPersistenceAdapter implements RegisterMembershipPort, FindMembershipPort {
 
   private final SpringDataMembershipRepository membershipRepository;
 
@@ -15,5 +16,10 @@ public class MemberPersistenceAdapter implements RegisterMembershipPort {
       boolean isCorp) {
     return membershipRepository.save(
         new MembershipJpaEntity(name, address, email, isValid, isCorp));
+  }
+
+  @Override
+  public MembershipJpaEntity findMembership(long membershipId) {
+    return membershipRepository.getById(membershipId);
   }
 }
