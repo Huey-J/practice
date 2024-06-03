@@ -1,11 +1,10 @@
 package com.pay.membership.adapter.out.persistence;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -15,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class MembershipJpaEntity {
 
   @Id
-  @Generated
+  @GeneratedValue
   private Long memebershipId;
   private String name;
   private String address;
