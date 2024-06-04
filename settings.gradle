@@ -4,6 +4,7 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'demo'
-include 'membership-service'
+rootProject.name = 'pay'
 
+include 'membership-service'
+include 'common'

@@ -1,9 +1,9 @@
 package com.pay.membership.adapter.out.persistence;
 
+import com.pay.common.PersistenceAdapter;
 import com.pay.membership.application.port.out.FindMembershipPort;
 import com.pay.membership.application.port.out.ModifyMembershipPort;
 import com.pay.membership.application.port.out.RegisterMembershipPort;
-import common.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter

@@ -1,12 +1,12 @@
 package com.pay.membership.application.service;
 
+import com.pay.common.UseCase;
 import com.pay.membership.adapter.out.persistence.MembershipJpaEntity;
 import com.pay.membership.adapter.out.persistence.MembershipMapper;
 import com.pay.membership.application.port.in.ModifyMembershipCommand;
 import com.pay.membership.application.port.in.ModifyMembershipUseCase;
 import com.pay.membership.application.port.out.ModifyMembershipPort;
 import com.pay.membership.domain.Membership;
-import common.UseCase;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 

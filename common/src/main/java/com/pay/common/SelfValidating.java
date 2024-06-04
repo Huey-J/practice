@@ -1,4 +1,4 @@
-package common;
+package com.pay.common;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
