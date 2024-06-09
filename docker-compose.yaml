@@ -1,6 +1,6 @@
 version: '3'
 services:
   membership-service:
-    image: pay-membership-service:0.0.1-SNAPSHOT
+    image: pay-membership-service:0.0.1
     ports:
       - "8081:8080"

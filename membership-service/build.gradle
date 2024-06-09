@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.pay.membership'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 dependencies {
     // spring web
