@@ -1,6 +1,7 @@
 package com.pay.money.application.service;
 
 import com.pay.common.UseCase;
+import com.pay.money.adapter.out.persistence.MemberMoneyJpaEntity;
 import com.pay.money.adapter.out.persistence.MoneyChangingRequestJpaEntity;
 import com.pay.money.adapter.out.persistence.MoneyChangingRequestMapper;
 import com.pay.money.application.port.in.IncreaseMoneyRequestCommand;
@@ -30,14 +31,19 @@ public class IncreaseMoneyRequestService implements IncreaseMoneyRequestUseCase 
     //   성공 시 멤버의 MemberMoney 값 증액
     //  6-2. 결과가 실패라면, 실패라고 MoneyChangingRequest 상태값을 변동 후에 리턴
 
-    MoneyChangingRequestJpaEntity moneyChangingRequest = increaseMoneyPort.createMoneyChangingRequest(
-        command.getTargetMembershipId(),
-        0,
-        command.getAmount(),
-        0
-    );
+    MemberMoneyJpaEntity memberMoney = increaseMoneyPort.increaseMoney(
+        command.getTargetMembershipId(), command.getAmount());
 
-    return mapper.mapToDomainEntity(moneyChangingRequest);
+    if (memberMoney != null) {
+      MoneyChangingRequestJpaEntity moneyChangingRequest = increaseMoneyPort.createMoneyChangingRequest(
+          command.getTargetMembershipId(),
+          0,  // 증액
+          command.getAmount(),
+          1   // 성공
+      );
+      return mapper.mapToDomainEntity(moneyChangingRequest);
+    }
+    return null;
   }
 
 }
