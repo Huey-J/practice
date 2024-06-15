@@ -7,4 +7,6 @@ public interface RequestFirmBankingPort {
   FirmBankingRequestJpaEntity createFirmBankingRequest(String fromBankName, String fromBankAccountNumber,
       String toBankName, String toBankAccountNumber, int amount);
 
+  FirmBankingRequestJpaEntity modifyFirmBankingRequest(FirmBankingRequestJpaEntity entity);
+
 }
