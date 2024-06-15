@@ -1,0 +1,35 @@
+plugins {
+    id 'com.palantir.docker' version '0.36.0'
+}
+
+group = 'com.pay.money'
+version = '0.0.1'
+
+dependencies {
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // database
+//    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    testRuntimeOnly 'com.h2database:h2'
+
+    // my module
+    implementation project(':common')
+}
+
+docker {
+    println(tasks.bootJar.outputs.files)
+
+    name rootProject.name+'-'+project.name + ":" + version  // file name
+    dockerfile file('../Dockerfile')
+    files tasks.bootJar.outputs.files
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+}
