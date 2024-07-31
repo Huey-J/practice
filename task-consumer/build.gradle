@@ -1,0 +1,23 @@
+plugins {
+    id 'com.palantir.docker' version '0.36.0'
+}
+
+group = 'com.pay.taskconsumer'
+version = '0.0.1'
+
+dependencies {
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // my module
+    implementation project(':common')
+}
+
+docker {
+    println(tasks.bootJar.outputs.files)
+
+    name rootProject.name+'-'+project.name + ":" + version  // file name
+    dockerfile file('../Dockerfile')
+    files tasks.bootJar.outputs.files
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+}
