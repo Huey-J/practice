@@ -73,6 +73,26 @@ services:
       - TASK_RESULT_TOPIC=pay.task.result.topic
       - SERVICE_MEMBERSHIP_URL=http://membership-service:8080
 
+  remittance-service:
+    image: pay-remittance-service:0.0.1
+    networks:
+      - pay_network
+    ports:
+      - "8084:8080"
+    restart: always
+    depends_on:
+      - kafka
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/pay?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=mysqluser
+      - SPRING_DATASOURCE_PASSWORD=mysqlpw
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+      - LOGGING_TOPIC=pay.logging.out.stdout
+      - SERVICE_MEMBERSHIP_URL=http://membership-service:8080
+
   zookeeper:
     image: 'arm64v8/zookeeper:3.8'
     networks:
