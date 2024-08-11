@@ -16,6 +16,7 @@ public class RequestRemittanceController {
 
   private final RequestRemittanceUseCase requestRemittanceUseCase;
 
+  // 송금 요청
   @PostMapping(path = "/remittance/request")
   RemittanceRequest requestRemittance(@RequestBody RequestRemittanceRequest request) {
     RequestRemittanceCommand command = RequestRemittanceCommand.builder()
