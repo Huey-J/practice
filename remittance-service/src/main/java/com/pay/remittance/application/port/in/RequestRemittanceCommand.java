@@ -1,7 +1,6 @@
 package com.pay.remittance.application.port.in;
 
 import com.pay.common.SelfValidating;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +21,6 @@ public class RequestRemittanceCommand extends SelfValidating<RequestRemittanceCo
   private int remittanceType; // 0: membership(내부 고객), 1: bank (외부 은행 계좌)
 
   @NotNull
-  @NotBlank
   private int amount;   // 송금요청 금액
 
   public RequestRemittanceCommand(Long fromMembershipId, Long toMembershipId, String toBankName,
