@@ -1,6 +1,7 @@
 package com.pay.money.adapter.out.persistence;
 
 import com.pay.common.PersistenceAdapter;
+import com.pay.money.application.port.out.FindMemberMoneyPort;
 import com.pay.money.application.port.out.IncreaseMoneyPort;
 import java.sql.Timestamp;
 import java.util.List;
@@ -9,7 +10,8 @@ import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort {
+public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort,
+    FindMemberMoneyPort {
 
   private final SpringDataMoneyChangingRequestRepository moneyChangingRequestRepository;
   private final SpringDataMemberMoneyRepository memberMoneyRepository;
@@ -40,5 +42,10 @@ public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort
       entity = new MemberMoneyJpaEntity(memberId, increaseMoneyAmount);
       return memberMoneyRepository.save(entity);
     }
+  }
+
+  @Override
+  public MemberMoneyJpaEntity getByMembershipId(long membershipId) {
+    return memberMoneyRepository.findByMembershipId(membershipId).get(0);
   }
 }
